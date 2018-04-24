@@ -18,3 +18,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+/*
+ * Admin Routing init
+ */
+Route::get('/admin/login', 'Admin\AuthController@loginForm');
+Route::post('/admin/login', 'Admin\AuthController@login')->name('admin-login');
+Route::get('/admin/register', 'Admin\AuthController@register');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin', 'namespace' => 'Admin'], function () {
+    include __DIR__.'/admin.php';
+});
