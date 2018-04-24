@@ -5,6 +5,5 @@
     <div class="content">
 
     </div>
-    @include('layouts.sidebar')
 </div>
 @endsection
