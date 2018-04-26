@@ -20,4 +20,23 @@ class Project extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+
+
+    /*
+     * My project ?
+     */
+    public static function ownProject($id)
+    {
+        $project = Project::where('id', $id)->where('user_id', auth()->user()->id)->first();
+        if (!$project) {
+            throw new \Exception("Project not found!", 400);
+        }
+        return $project;
+    }
 }

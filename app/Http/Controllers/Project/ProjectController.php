@@ -44,6 +44,7 @@ class ProjectController extends Controller
         $project->title = $request->title;
         $project->content = $request->content;
         $project->user_id = auth()->user()->id;
+
         if ($project->save()) {
             return redirect()->route('projects.show', ['id' => $project->id])->with('success', 'Successfully completed.');
         }
@@ -71,7 +72,7 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        return $this->project($id);
+        return Project::ownProject($id);
     }
 
 
@@ -83,7 +84,7 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
         $this->validation($request);
-        $project = $this->project($id);
+        $project = Project::ownProject($id);
         $project->category_id = $request->category_id;
         $project->title = $request->title;
         $project->content = $request->content;
@@ -101,20 +102,11 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        $project = $this->project($id);
+        $project = Project::ownProject($id);
         if ($project->delete()) {
             return redirect()->route('projects.index')->with('success', 'Successfully completed.');
         }
         return back()->with('error', 'Project not deleted. Please try again');
-    }
-
-    private function project($id)
-    {
-        $project = Project::where('id', $id)->where('user_id', auth()->user()->id)->first();
-        if (!$project) {
-            throw new \Exception("Project not found!", 400);
-        }
-        return $project;
     }
 
     private function validation($request)
