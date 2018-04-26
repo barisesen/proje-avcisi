@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
  * Projects routing
  */
 Route::resource('/projects', 'Project\ProjectController');
+Route::post('/projects/{id}/like/store', 'Project\LikeController@store');
+Route::post('/projects/{id}/like/destroy', 'Project\LikeController@destroy');
 
 /*
  * Admin Routing init
