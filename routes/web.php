@@ -19,7 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+/*
+ * Projects routing
+ */
+Route::resource('/projects', 'Project\ProjectController');
 
 /*
  * Admin Routing init
