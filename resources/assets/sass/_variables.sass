@@ -2,10 +2,21 @@
 $bg-color: #f4f4f4
 $main-link-color: #EF4836
 $main-radius: 4px
-$main-width: 1100px
+$main-black: #666
 
 $nav-inner-height: 64px
+$nav-height: $nav-inner-height
+
+$side-width: 280px
+$left-width: 200px
+$content-width: 560px
+$main-padding: 20px
+
+$full-width: $content-width + $side-width + $left-width + $main-padding * 2
 
 // Typography
 $main-font: "Raleway", sans-serif
 $main-font-size: 14px
+
+@mixin shadow()
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04)

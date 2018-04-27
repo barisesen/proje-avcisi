@@ -1,5 +1,5 @@
 <nav class="navbar">
-    <div class="navbar-inner">
+    <div class="navbar-inner container">
         <div class="navbar-left flex space-between vertical-center">
             <a class="nav-logo" href="{{ url('/') }}">
                 Proje Avcısı
@@ -33,7 +33,7 @@
             </div>
 
             <ul class="navbar-nav flex space-between vertical-center">
-                <li><a href="{{ route('share-project') }}" class="button blue-bg">+ Proje Paylaş</a></li>
+                <li><a href="{{ route('share-project') }}" class="button blue-bg"><i class="fas fa-paper-plane"></i>&nbsp Proje Paylaş</a></li>
                 @guest
                     <li><a class="nav-link" href="{{ route('login') }}">Giriş Yap</a></li>
                     <li><a class="nav-link" href="{{ route('register') }}">Üye Ol</a></li>
