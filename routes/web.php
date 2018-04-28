@@ -19,6 +19,11 @@ Route::resource('/projects', 'Project\ProjectController');
 Route::post('/projects/{id}/like/store', 'Project\LikeController@store');
 Route::post('/projects/{id}/like/destroy', 'Project\LikeController@destroy');
 
+
+Route::post('/follow/store/', 'Follow\FollowController@store');
+Route::post('/follow/destroy', 'Follow\FollowController@destroy');
+
+
 /*
  * Admin Routing init
  */
