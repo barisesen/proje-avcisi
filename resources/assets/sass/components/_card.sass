@@ -1,0 +1,11 @@
+.card
+    @include shadow
+    width: calc(100% - $main-padding * 2)
+    padding: $main-padding
+    background-color: #fff
+    border-radius: $main-radius
+
+.project-card
+    @extend .card
+    width: $content-width - $main-padding * 2
+    margin-top: $main-padding
