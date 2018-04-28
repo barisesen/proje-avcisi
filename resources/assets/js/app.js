@@ -10,6 +10,7 @@ $('.check-value').on('keyup', function () {
     clearTimeout(typingTimer);
     var $this = $(this);
     $(this).next().hide();
+
     typingTimer = setTimeout(function() {
         doneTyping($this);
     }, 1000);
@@ -24,12 +25,16 @@ function doneTyping($input) {
     $input.next().html(spinnerIcon);
     $input.next().show();
     $.ajax({
-        method: 'GET',
-        url: 'ajax/username/' + value,
-        data: { value: value }
+        method: 'POST',
+        url: `register/check/${$($input).data('type')}`,
+        data: { value: value, _token: $('meta[name="csrf-token"]').attr('content') }
     })
     .done(function( msg ) {
         $input.next().html(successIcon);
+    })
+    .fail(function (msg) {
+       console.log(msg);
+       alert(msg.responseJSON.message);
     });
 }
 

@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label for="email" class="form-label">E-posta Adresiniz:</label>
                         <div class="input-group">
-                            <input id="email" type="email" class="form-text check-value" name="email" value="{{ old('email') }}" placeholder="eposta@mail.com" required autofocus>
+                            <input id="email" type="email" class="form-text check-value" name="email" data-type="email" value="{{ old('email') }}" placeholder="eposta@mail.com" required autofocus>
                             <div class="form-icon"></div>
                         </div>
                     </div>
