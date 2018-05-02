@@ -4,8 +4,25 @@
     padding: $main-padding
     background-color: #fff
     border-radius: $main-radius
+    margin-bottom: $main-padding
 
 .project-card
     @extend .card
     width: $content-width - $main-padding * 2
-    margin-top: $main-padding
+
+.project-info
+    width: calc(100% - 111px)
+
+.project-name
+    a
+        color: #666
+
+.project-description
+    color: #888
+    margin-bottom: 20px
+
+.project-image
+    img
+        width: 96px
+        height: 96px
+        border-radius: 10px
