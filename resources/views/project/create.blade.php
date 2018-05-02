@@ -3,7 +3,8 @@
 @section('content')
 <div class="wrapper">
     <div class="container">
-        <form class="create-project-form flex space-between" action="" method="POST">
+        <form class="create-project-form flex space-between" action="{{route('projects.store')}}" method="POST">
+            @csrf
             <div class="leftbar">
                 <div class="card">
                     <i class="fas fa-image fa-2x"></i> Logo
@@ -25,7 +26,9 @@
                 <div class="card">
                     <h4 class="card-title">Proje Kategorisi</h4>
                     <select class="form-text" name="category_id">
-                        <option value="">Yazılım</option>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="card">
@@ -37,7 +40,7 @@
                     <input type="text" class="form-text" name="tools" placeholder="balzamiq, sketch, node.js, sass">
                 </div>
                 <div class="card">
-                    <button type="button" class="button green-bg full-btn bolder-btn" name="button">
+                    <button type="submit" class="button green-bg full-btn bolder-btn" name="button">
                         <i class="fas fa-paper-plane"></i>&nbsp Projeyi Paylaş
                     </button>
                 </div>

@@ -8,7 +8,7 @@ Route::post('/register/check/email', 'Auth\RegisterController@checkEmail');
 Route::get('/', 'HomeController@index')->name('home');
 
 // Proje Ekle/Düzenle/Sil
-Route::get('/paylas', 'ProjectController@create')->name('share-project');
+Route::get('/paylas', 'Project\ProjectController@create')->name('share-project');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
