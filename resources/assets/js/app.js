@@ -33,8 +33,7 @@ function doneTyping($input) {
         $input.next().html(successIcon);
     })
     .fail(function (msg) {
-       console.log(msg);
-       alert(msg.responseJSON.message);
+       $input.next().html(failIcon);
     });
 }
 
