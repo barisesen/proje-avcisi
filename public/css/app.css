@@ -316,6 +316,40 @@ body {
   border-radius: 10px;
 }
 
+.category-cards {
+  margin-bottom: 20px;
+}
+
+.category-cards ::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+}
+
+.category-cards ul {
+  overflow: auto;
+  white-space: nowrap;
+  height: 63px;
+  width: 100%;
+}
+
+.category-card {
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  display: inline-block;
+  margin-right: 5px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.category-card a {
+  display: block;
+  width: auto;
+  line-height: 60px;
+  font-weight: bold;
+  color: #fff;
+  padding: 0 20px;
+}
+
 .content-title {
   margin-bottom: 20px;
 }

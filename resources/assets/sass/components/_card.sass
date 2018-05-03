@@ -26,3 +26,28 @@
         width: 96px
         height: 96px
         border-radius: 10px
+
+.category-cards
+    margin-bottom: $main-padding
+    ::-webkit-scrollbar
+        height: 0px
+        width: 0px
+    ul
+        overflow: auto
+        white-space: nowrap
+        height: 63px
+        width: 100%
+
+.category-card
+    @include shadow
+    display: inline-block
+    margin-right: 5px
+    background-color: #fff
+    border-radius: $main-radius
+    a
+        display: block
+        width: auto
+        line-height: 60px
+        font-weight: bold
+        color: #fff
+        padding: 0 20px
