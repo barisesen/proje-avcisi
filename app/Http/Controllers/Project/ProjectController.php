@@ -28,7 +28,7 @@ class ProjectController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('projects.create', compact('categories'));
+        return view('project.create', compact('categories'));
     }
 
 

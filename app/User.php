@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Follow;
 use App\Models\Like;
 use App\Models\Project;
 use Illuminate\Notifications\Notifiable;
@@ -39,4 +40,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+
+    /*
+     * Takip ettiklerim
+     */
+    public function followers() {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+
+    /*
+     * Takip edenler
+     */
+    public function following() {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+
 }

@@ -8,7 +8,7 @@ Route::post('/register/check/email', 'Auth\RegisterController@checkEmail');
 Route::get('/', 'HomeController@index')->name('home');
 
 // Proje Ekle/Düzenle/Sil
-Route::get('/paylas', 'ProjectController@create')->name('share-project');
+Route::get('/paylas', 'Project\ProjectController@create')->name('share-project');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -18,6 +18,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/projects', 'Project\ProjectController');
 Route::post('/projects/{id}/like/store', 'Project\LikeController@store');
 Route::post('/projects/{id}/like/destroy', 'Project\LikeController@destroy');
+
+
+Route::post('/follow/store/', 'Follow\FollowController@store');
+Route::post('/follow/destroy', 'Follow\FollowController@destroy');
+
 
 /*
  * Admin Routing init
