@@ -21,13 +21,10 @@
                 </a>
 
                 <div class="sub-navbar">
-                    <ul class="sub-nav-categories">
-                        <li class="sm-category-card"><a href="#">Yazılım</a></li>
-                        <li class="sm-category-card"><a href="#">Tasarım</a></li>
-                        <li class="sm-category-card"><a href="#">Kanal</a></li>
-                        <li class="sm-category-card"><a href="#">Eğitim</a></li>
-                        <li class="sm-category-card"><a href="#">Araç</a></li>
-                        <li class="sm-category-card"><a href="#">Kitap</a></li>
+                    <ul class="sub-nav-categories flex wrap">
+                        @foreach ($categories as $category)<li class="sm-category-card">
+                            <a href="#">{{ $category->name }}</a>
+                        </li>@endforeach
                     </ul>
                 </div>
             </div>

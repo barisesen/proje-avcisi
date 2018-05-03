@@ -5,11 +5,9 @@
     <div class="container">
         <div class="category-cards">
             <ul>
-                @foreach ($categories as $category)
-                    <li class="category-card" style="background-color:{{ $category->color }}">
+                @foreach ($categories as $category)<li class="category-card" style="background-color:{{ $category->color }}">
                         <a href="#">{{ $category->name }}</a>
-                    </li>
-                @endforeach
+                </li>@endforeach
             </ul>
         </div>
         <div class="flex space-between">
