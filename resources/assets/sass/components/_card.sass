@@ -29,9 +29,17 @@
 
 .category-cards
     margin-bottom: $main-padding
+    position: relative
     ::-webkit-scrollbar
         height: 0px
         width: 0px
+    .ending-shadow
+        position: absolute
+        right: 0
+        top: 0
+        width: 20px
+        height: 60px
+        background: linear-gradient(to right, transparent , rgba(0,0,0,0.3))
     ul
         overflow: auto
         white-space: nowrap
@@ -51,6 +59,9 @@
         font-weight: bold
         color: #fff
         padding: 0 20px
+
+.category-card:last-child
+    margin-right: 0px
 
 .sm-category-card
     line-height: 25px

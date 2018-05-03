@@ -40,13 +40,18 @@ body {
 
 .wrapper {
   height: 100vh;
+  padding-top: 64px;
 }
 
 .container,
 .sm-container {
   margin: 0 auto;
   width: 1090px;
-  padding-top: 84px;
+  padding-top: 20px;
+}
+
+.without-padding {
+  padding: 0 !important;
 }
 
 .sm-container {
@@ -318,11 +323,22 @@ body {
 
 .category-cards {
   margin-bottom: 20px;
+  position: relative;
 }
 
 .category-cards ::-webkit-scrollbar {
   height: 0px;
   width: 0px;
+}
+
+.category-cards .ending-shadow {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 60px;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), to(rgba(0, 0, 0, 0.3)));
+  background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.3));
 }
 
 .category-cards ul {
@@ -348,6 +364,10 @@ body {
   font-weight: bold;
   color: #fff;
   padding: 0 20px;
+}
+
+.category-card:last-child {
+  margin-right: 0px;
 }
 
 .sm-category-card {
@@ -379,6 +399,18 @@ body {
 
 .card-title {
   color: #888;
+}
+
+.headline {
+  width: 100%;
+  background-color: #fff;
+  padding: 40px 0;
+  position: relative;
+  text-align: center;
+}
+
+.headline h1 {
+  color: #fff;
 }
 
 .button {
