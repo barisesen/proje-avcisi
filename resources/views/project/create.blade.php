@@ -4,6 +4,7 @@
 <div class="wrapper">
     <div class="container">
         <form class="create-project-form flex space-between" action="" method="POST">
+            @csrf
             <div class="leftbar">
                 <div class="card">
                     <i class="fas fa-image fa-2x"></i> Logo

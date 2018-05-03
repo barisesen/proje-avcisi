@@ -33,7 +33,9 @@
             </div>
 
             <ul class="navbar-nav flex space-between vertical-center">
-                <li><a href="{{ route('share-project') }}" class="button red-bg"><i class="fas fa-paper-plane"></i>&nbsp Proje Paylaş</a></li>
+                @if(!\Request::is('paylas') && !\Request::is('register'))
+                    <li><a href="{{ route('share-project') }}" class="button red-bg"><i class="fas fa-paper-plane"></i>&nbsp Proje Paylaş</a></li>
+                @endif
                 @guest
                     <li><a class="nav-link" href="{{ route('login') }}">Giriş Yap</a></li>
                     <li><a class="nav-link" href="{{ route('register') }}">Üye Ol</a></li>

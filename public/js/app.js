@@ -90,7 +90,7 @@ $('.check-value').on('keyup', function () {
 
     typingTimer = setTimeout(function () {
         doneTyping($this);
-    }, 1000);
+    }, 300);
 });
 
 $('.check-value').on('keydown', function () {
@@ -99,39 +99,24 @@ $('.check-value').on('keydown', function () {
 
 function doneTyping($input) {
     value = $input.val();
-    $input.next().html(spinnerIcon);
-    $input.next().show();
-    $.ajax({
-        method: 'POST',
-        url: 'register/check/' + $($input).data('type'),
-        data: { value: value, _token: $('meta[name="csrf-token"]').attr('content') }
-    }).done(function (msg) {
-        $input.next().html(successIcon);
-    }).fail(function (msg) {
-        $input.next().html(failIcon);
-    });
-}
+    if ($input.data('type') == 'password' || $input.data('type') == 'password-confirm') {
+        alert('Şifre uygun değil');
+    } else {
 
-// $('#email').on('keyup', function(e) {
-//     e.stopPropagation();
-//     var $this = $(this);
-//     var value = $(this).val();
-//     if (value != '' && value.length > 1) {
-//         setTimeout(function() {
-//             $this.next().show();
-//             $.ajax({
-//                 method: 'GET',
-//                 url: 'ajax/username/' + value,
-//                 data: { value: value }
-//             })
-//                 .done(function( msg ) {
-//                     alert( "Data Saved: " + msg.status );
-//             });
-//         }, 500);
-//     } else {
-//         $this.next().hide();
-//     }
-// });
+        $input.next().html(spinnerIcon);
+        $input.next().show();
+
+        $.ajax({
+            method: 'POST',
+            url: 'register/check/' + $($input).data('type'),
+            data: { value: value, _token: $('meta[name="csrf-token"]').attr('content') }
+        }).done(function (msg) {
+            $input.next().html(successIcon);
+        }).fail(function (msg) {
+            $input.next().html(failIcon);
+        });
+    }
+}
 
 /***/ }),
 /* 2 */
