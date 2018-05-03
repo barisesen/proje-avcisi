@@ -10,11 +10,15 @@ body
 
 .wrapper
     height: 100vh
+    padding-top: $nav-height
 
 .container
     margin: 0 auto
     width: $full-width
-    padding-top: $nav-height + $main-padding
+    padding-top: $main-padding
+
+.without-padding
+    padding: 0 !important
 
 .sm-container
     @extend .container

@@ -2,21 +2,18 @@
 
 @section('content')
 <div class="wrapper">
-    <div class="container">
-        <div class="category-cards">
-            <div class="ending-shadow"></div>
-            <ul>
-                @foreach ($categories as $category)<li class="category-card" style="background-color:{{ $category->color }}">
-                        <a href="{{ url('kategori/' . $category->slug) }}">{{ $category->name }}</a>
-                </li>@endforeach
-            </ul>
+    <div class="headline" style="background-color: {{ $category->color }}">
+        <div class="container without-padding">
+            <h1>{{ $category->name }}</h1>
         </div>
+    </div>
+    <div class="container">
         <div class="flex space-between">
             @include('layouts.leftbar')
             <div class="content">
                 <ul class="project-cards">
                     <h2 class="content-title">
-                        <img src="{{ URL::asset('img/fire.gif') }}" height="30">&nbsp Bugün En Çok Ateşlenenler
+                        <img src="{{ URL::asset('img/fire.gif') }}" height="30">&nbsp Bu Kategoride En Çok Ateşlenenler
                     </h2>
                     @for ($i = 0; $i < 5; $i++)
                         <li class="project-card">
