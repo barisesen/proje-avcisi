@@ -27,8 +27,8 @@ class LikeController extends Controller
         $like->project_id = $project->id;
 
         if ($like->save()) {
-            AddUserPoint::dispatch(auth()->user()->id, 'like_user', $id);
-            AddProjectPoint::dispatch($id, 'like_project', auth()->user()->id);
+            AddUserPoint::dispatch(auth()->user()->id, 'add_like_user', $id);
+            AddProjectPoint::dispatch($id, 'add_like_project', auth()->user()->id);
 
             return response()->json([
                 'message' => 'Successful'

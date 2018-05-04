@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\Like;
 use App\Models\Project;
+use App\Models\UserPoint;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -65,5 +66,10 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function points()
+    {
+        return $this->hasMany(UserPoint::class);
     }
 }

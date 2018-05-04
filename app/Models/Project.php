@@ -43,4 +43,9 @@ class Project extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function points()
+    {
+        return $this->hasMany(ProjectPoint::class);
+    }
 }

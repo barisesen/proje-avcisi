@@ -24,7 +24,7 @@ class CommentController extends Controller
         $comment->content = $request->content;
         if ($comment->save()) {
             AddUserPoint::dispatch(auth()->user()->id, 'add_comment_user', $project->id);
-            AddProjectPoint::dispatch($project->id, 'comment_project', auth()->user()->id);
+            AddProjectPoint::dispatch($project->id, 'add_comment_project', auth()->user()->id);
             return response()->json([
                 'message' => "Successful",
                 'status' => 200
