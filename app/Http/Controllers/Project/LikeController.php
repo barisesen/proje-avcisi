@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Project;
 
+use App\Jobs\AddProjectPoint;
+use App\Jobs\AddUserPoint;
 use App\Models\Like;
 use App\Models\Project;
 use Illuminate\Http\Request;
@@ -25,6 +27,9 @@ class LikeController extends Controller
         $like->project_id = $project->id;
 
         if ($like->save()) {
+            AddUserPoint::dispatch(auth()->user()->id, 'like_user', $id);
+            AddProjectPoint::dispatch($id, 'like_project', auth()->user()->id);
+
             return response()->json([
                 'message' => 'Successful'
             ], 200);
@@ -44,6 +49,8 @@ class LikeController extends Controller
         }
         $like = Like::where('project_id', $id)->where('user_id', auth()->user()->id)->delete();
         if ($like) {
+            AddUserPoint::dispatch(auth()->user()->id, 'delete_like_user', $id);
+            AddProjectPoint::dispatch($id, 'delete_like_project', auth()->user()->id);
             return response()->json([
                 'message' => 'Successful'
             ], 200);

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Project;
 
+use App\Jobs\AddPoint;
+use App\Jobs\AddProjectPoint;
+use App\Jobs\AddUserPoint;
 use App\Models\Category;
 use App\Models\Project;
 use Illuminate\Http\Request;
@@ -46,6 +49,7 @@ class ProjectController extends Controller
         $project->user_id = auth()->user()->id;
 
         if ($project->save()) {
+            AddUserPoint::dispatch(auth()->user()->id, 'create_project', $project->id);
             return redirect()->route('projects.show', ['id' => $project->id])->with('success', 'Successfully completed.');
         }
         return back()->with('error', 'Project not updated. Please try again');
@@ -60,6 +64,7 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::findOrFail($id);
+        AddProjectPoint::dispatch($id, 'view_project', auth()->user()->id);
         return $project;
 //        return view('projects.show', compact('project'));
     }
