@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Follow;
 use App\Models\Like;
 use App\Models\Project;
@@ -59,5 +60,10 @@ class User extends Authenticatable
 
     public function categories() {
         return $this->belongsToMany(Category::class, 'user_categories', 'user_id', 'category_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

@@ -27,7 +27,6 @@ class Project extends Model
     }
 
 
-
     /*
      * My project ?
      */
@@ -38,5 +37,10 @@ class Project extends Model
             throw new \Exception("Project not found!", 400);
         }
         return $project;
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

@@ -18,6 +18,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/projects', 'Project\ProjectController');
 Route::post('/projects/{id}/like/store', 'Project\LikeController@store');
 Route::post('/projects/{id}/like/destroy', 'Project\LikeController@destroy');
+/*
+ * Project comments
+ */
+Route::post('/projects/{id}/comment', 'Project\CommentController@store');
+Route::delete('/comments/{id}', 'Project\CommentController@destroy');
 
 
 Route::post('/follow/store/', 'Follow\FollowController@store');
