@@ -9,7 +9,7 @@
                 <form class="nav-search-form flex space-between vertical-center" action="" method="GET">
                     @csrf
                     <input type="text" name="q" class="nav-search-text" placeholder="Proje ara..">
-                    <button type="button" name="button" class="nav-search-btn"><i class="fas fa-search fa-lg"></i></button>
+                    <button type="submit" name="button" class="nav-search-btn"><i class="fas fa-search fa-lg"></i></button>
                 </form>
             </div>
         </div>
@@ -34,30 +34,33 @@
                     <li><a href="{{ route('share-project') }}" class="button red-bg"><i class="fas fa-paper-plane"></i>&nbsp Proje Paylaş</a></li>
                 @endif
                 @guest
-                    <li><a class="nav-link" href="{{ route('login') }}">Giriş Yap</a></li>
-                    <li><a class="nav-link" href="{{ route('register') }}">Üye Ol</a></li>
+                    <li><a class="nav-guest-link" href="{{ route('login') }}">Giriş Yap</a></li>
+                    <li><a class="nav-guest-link" href="{{ route('register') }}">Üye Ol</a></li>
                 @else
                     <li>
                         <a href="{{ url('bildirimler') }}" class="nav-link">
                             <i class="far fa-bell fa-lg"></i>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-user">
                         <a href="{{ url('uye/gurkansen') }}" class="nav-link">
                             <i class="far fa-user fa-lg"></i>
                         </a>
+                        <ul class="user-dropdown">
+                            <div class="dropdown-arrow"><i class="fas fa-caret-up fa-2x"></i></div>
+                            <li><a href="{{ url('uye/gurkansen') }}"><i class="far fa-user"></i>&nbsp Profili Gör</a></li>
+                            <li><a href="{{ url('uye/hesap') }}"><i class="fas fa-cog"></i>&nbsp Hesap Ayarları</a></li>
+                            <li><a href="{{ url('uye/e-posta') }}"><i class="fas fa-at"></i>&nbsp E-posta Bildirimleri</a></li>
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" name="button" class="dropdown-link">
+                                        <i class="fas fa-sign-out-alt"></i>&nbsp Çıkış Yap
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
                     </li>
-                    <!--<li>
-                        <a href="#" class="nav-link nav-image-link flex vertical-center">
-                            <img src="img/default.png" class="circle-image size-36" alt="{{ 'User Name' }}">
-                        </a>
-                    </li>-->
-                    <!--<li>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="button" name="button">Çıkış Yap</button>
-                        </form>
-                    </li>-->
                 @endguest
             </ul>
         </div>

@@ -26,6 +26,10 @@ h6 {
   margin: 0;
 }
 
+button {
+  font-family: "Raleway", sans-serif;
+}
+
 body {
   background-color: #f4f4f4;
   font-family: "Raleway", sans-serif;
@@ -222,6 +226,7 @@ body {
 .navbar .navbar-inner .nav-right .nav-categories-btn {
   color: #888;
   margin-left: 20px;
+  font-weight: bold;
 }
 
 .navbar .navbar-inner .nav-right .navbar-nav {
@@ -248,6 +253,19 @@ body {
   display: block;
 }
 
+.navbar .navbar-inner .nav-right .navbar-nav .nav-guest-link {
+  -webkit-transition: 0.1s ease-out;
+  transition: 0.1s ease-out;
+  margin-left: 5px;
+  padding: 12px 10px;
+  color: #888;
+  font-weight: bold;
+}
+
+.navbar .navbar-inner .nav-right .navbar-nav .nav-guest-link:hover {
+  color: #EF4836;
+}
+
 .sub-navbar {
   display: none;
   padding: 15px 0 5px 0;
@@ -267,6 +285,76 @@ body {
 }
 
 .nav-categories-dropdown:hover .sub-navbar {
+  display: block;
+}
+
+.nav-user {
+  position: relative;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  width: 200px;
+  right: 0;
+  top: 54px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  background-color: #fff;
+}
+
+.user-dropdown .dropdown-arrow {
+  position: absolute;
+  height: 20px;
+  width: 46px;
+  text-align: center;
+  right: 0px;
+  top: -20px;
+  color: rgba(0, 0, 0, 0.08);
+  line-height: 20px;
+}
+
+.user-dropdown li {
+  line-height: 24px;
+}
+
+.user-dropdown li a {
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  padding: 10px 20px;
+  color: #666;
+}
+
+.user-dropdown li a:hover {
+  background-color: rgba(0, 0, 0, 0.01);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.user-dropdown li:last-child a {
+  border-radius: 0 0 4px 4px;
+}
+
+.user-dropdown .dropdown-link {
+  display: block;
+  cursor: pointer;
+  width: 100%;
+  font-size: 14px;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  padding: 10px 20px;
+  line-height: 24px;
+  color: #666;
+}
+
+.user-dropdown .dropdown-link:hover {
+  background-color: rgba(0, 0, 0, 0.01);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.nav-user:hover .user-dropdown {
   display: block;
 }
 
