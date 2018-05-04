@@ -14,6 +14,9 @@ Route::get('/paylas', 'Project\ProjectController@create')->name('share-project')
 // Kategori Single Sayfası
 Route::get('/kategori/{slug}', 'CategoryController@show')->name('category');
 
+// Profil Sayfası
+Route::get('/uye/{username}', 'UserController@show')->name('user');
+
 /*
  * Projects routing
  */
