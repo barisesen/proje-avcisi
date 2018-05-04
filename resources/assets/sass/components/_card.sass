@@ -26,3 +26,57 @@
         width: 96px
         height: 96px
         border-radius: 10px
+
+.category-cards
+    margin-bottom: $main-padding
+    position: relative
+    ::-webkit-scrollbar
+        height: 0px
+        width: 0px
+    .ending-shadow
+        position: absolute
+        right: 0
+        top: 0
+        width: 20px
+        height: 60px
+        background: linear-gradient(to right, transparent , rgba(0,0,0,0.3))
+    ul
+        overflow: auto
+        white-space: nowrap
+        height: 63px
+        width: 100%
+
+.category-card
+    @include shadow
+    display: inline-block
+    margin-right: 10px
+    background-color: #fff
+    border-radius: $main-radius
+    a
+        display: block
+        width: auto
+        line-height: 60px
+        font-weight: bold
+        color: #fff
+        padding: 0 20px
+
+.category-card:last-child
+    margin-right: 0px
+
+.sm-category-card
+    line-height: 25px
+    margin-right: 10px
+    margin-bottom: 10px
+    a
+        display: block
+        background-color: #f8f8f8
+        padding: 3px 10px
+        border-radius: $main-radius
+        color: #999
+        border: 1px solid rgba(0,0,0,0.02)
+        font-weight: bold
+        @include transition(.1s)
+
+.sm-category-card a:hover
+    color: #666
+    border: 1px solid rgba(0,0,0,0.04)

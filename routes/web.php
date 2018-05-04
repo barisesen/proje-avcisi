@@ -6,11 +6,13 @@ Route::post('/register/check/username', 'Auth\RegisterController@checkUsername')
 Route::post('/register/check/email', 'Auth\RegisterController@checkEmail');
 // Ana Sayfa
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 // Proje Ekle/Düzenle/Sil
 Route::get('/paylas', 'Project\ProjectController@create')->name('share-project');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Kategori Single Sayfası
+Route::get('/kategori/{slug}', 'CategoryController@show')->name('category');
 
 /*
  * Projects routing

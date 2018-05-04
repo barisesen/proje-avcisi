@@ -21,20 +21,17 @@
                 </a>
 
                 <div class="sub-navbar">
-                    <ul class="sub-nav-categories">
-                        <li class="sm-category-card"><a href="#">Yazılım</a></li>
-                        <li class="sm-category-card"><a href="#">Tasarım</a></li>
-                        <li class="sm-category-card"><a href="#">Kanal</a></li>
-                        <li class="sm-category-card"><a href="#">Eğitim</a></li>
-                        <li class="sm-category-card"><a href="#">Araç</a></li>
-                        <li class="sm-category-card"><a href="#">Kitap</a></li>
+                    <ul class="sub-nav-categories flex wrap">
+                        @foreach ($categories as $category)<li class="sm-category-card">
+                            <a href="#">{{ $category->name }}</a>
+                        </li>@endforeach
                     </ul>
                 </div>
             </div>
 
             <ul class="navbar-nav flex space-between vertical-center">
-                @if(!\Request::is('paylas'))
-                <li><a href="{{ route('share-project') }}" class="button red-bg"><i class="fas fa-paper-plane"></i>&nbsp Proje Paylaş</a></li>
+                @if(!\Request::is('paylas') && !\Request::is('register'))
+                    <li><a href="{{ route('share-project') }}" class="button red-bg"><i class="fas fa-paper-plane"></i>&nbsp Proje Paylaş</a></li>
                 @endif
                 @guest
                     <li><a class="nav-link" href="{{ route('login') }}">Giriş Yap</a></li>

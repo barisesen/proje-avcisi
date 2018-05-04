@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label for="email" class="form-label">E-posta Adresiniz:</label>
                         <div class="input-group">
-                            <input id="email" type="email" class="form-text check-value" name="email" data-type="email" value="{{ old('email') }}" placeholder="eposta@mail.com" required autofocus>
+                            <input id="email" type="email" class="form-text" name="email" data-type="email" value="{{ old('email') }}" placeholder="eposta@mail.com" required autofocus>
                             <div class="form-icon"></div>
                         </div>
                     </div>
@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <label for="password" class="form-label">Parolanız:</label>
                         <div class="input-group">
-                            <input id="password" type="password" class="form-text check-value" name="password" placeholder="***" required>
+                            <input id="password" type="password" class="form-text" name="password" placeholder="***" required>
                             <div class="form-icon"></div>
                         </div>
                     </div>
