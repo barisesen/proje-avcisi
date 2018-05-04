@@ -34,3 +34,6 @@ Route::get('/admin/register', 'Admin\AuthController@register');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin', 'namespace' => 'Admin'], function () {
     include __DIR__.'/admin.php';
 });
+
+
+Route::get('/dev', 'DevController@index');

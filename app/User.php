@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Category;
 use App\Models\Follow;
 use App\Models\Like;
 use App\Models\Project;
@@ -56,4 +57,7 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
     }
 
+    public function categories() {
+        return $this->belongsToMany(Category::class, 'user_categories', 'user_id', 'category_id');
+    }
 }
