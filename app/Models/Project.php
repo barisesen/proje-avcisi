@@ -56,4 +56,9 @@ class Project extends Model
     public function tools() {
         return $this->belongsToMany(Tool::class, 'project_tools', 'project_id', 'tool_id');
     }
+
+    public function feeds()
+    {
+        return $this->hasMany(Feed::class);
+    }
 }

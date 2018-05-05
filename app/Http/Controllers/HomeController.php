@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Feed;
+use App\Models\Follow;
 use App\Models\Project;
 use App\Models\ProjectTool;
 use Illuminate\Http\Request;
@@ -34,6 +36,8 @@ class HomeController extends Controller
             ->orderBy('projects.point', 'Desc')
             ->paginate();
 
-        return view('home', compact('projects'));
+        $following_users = Follow::where('follower_id', auth()->user()->id)->pluck('id');
+        $feeds = Feed::with('user', 'project')->whereIn('user_id', $following_users)->get();
+        return view('home', compact('projects', 'feeds'));
     }
 }

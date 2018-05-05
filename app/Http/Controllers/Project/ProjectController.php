@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Project;
 
+use App\Jobs\AddFeed;
 use App\Jobs\AddPoint;
 use App\Jobs\AddProjectPoint;
 use App\Jobs\AddUserPoint;
@@ -64,7 +65,7 @@ class ProjectController extends Controller
             }
             $this->tags($project->id, explode(',', strtolower($request->tags)));
             $this->tools($project->id, explode(',', strtolower($request->tools)));
-
+            AddFeed::dispatch($project->id, auth()->user()->id, 'Proje paylaştı');
             AddUserPoint::dispatch(auth()->user()->id, 'create_project', $project->id);
             return redirect()->route('projects.show', ['id' => $project->id])->with('success', 'Successfully completed.');
         }

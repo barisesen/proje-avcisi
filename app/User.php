@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Feed;
 use App\Models\Follow;
 use App\Models\Like;
 use App\Models\Project;
@@ -71,5 +72,10 @@ class User extends Authenticatable
     public function points()
     {
         return $this->hasMany(UserPoint::class);
+    }
+
+    public function feeds()
+    {
+        return $this->hasMany(Feed::class);
     }
 }

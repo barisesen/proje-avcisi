@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Project;
 
+use App\Jobs\AddFeed;
 use App\Jobs\AddProjectPoint;
 use App\Jobs\AddUserPoint;
 use App\Models\Comment;
@@ -25,6 +26,7 @@ class CommentController extends Controller
         if ($comment->save()) {
             AddUserPoint::dispatch(auth()->user()->id, 'add_comment_user', $project->id);
             AddProjectPoint::dispatch($project->id, 'add_comment_project', auth()->user()->id);
+            AddFeed::dispatch($id, auth()->user()->id, 'Yorum Yaptı');
             return response()->json([
                 'message' => "Successful",
                 'status' => 200
