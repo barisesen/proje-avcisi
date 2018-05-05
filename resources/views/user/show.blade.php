@@ -3,13 +3,50 @@
 @section('content')
 <div class="wrapper">
     <div class="container">
-
+        <div class="head-content">
+            <div class="head-mid">
+                <div class="profile-image">
+                    <img src="{{ URL::asset('img/users/default.png') }}" class="profile-image" alt="">
+                </div>
+                <h1 class="profile-title">Gürkan Şen</h1>
+                <p>Pamukkale Üniversitesi, Frontend developer - İzmir</p>
+                <div class="head-bottom">
+                    <form class="" action="index.html" method="post">
+                        @csrf
+                        <button type="submit" class="button green-bg" name="button"><i class="fas fa-thumbtack"></i>&nbsp takip et</button>
+                    </form>
+                    <ul class="profile-nav">
+                        <li class="profile-nav-active"><a href="#"><span>20</span> Ateşlenen</a></li>
+                        <li><a href="#"><span>32</span> Takipçi</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="flex space-between">
-            @include('layouts.leftbar')
+            <div class="leftbar">
+                <div class="card">
+                    <ul class="social-links">
+                        <li><a href="#"><i class="fab fa-facebook"></i>&nbsp Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i>&nbsp Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i>&nbsp Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i>&nbsp Linkedin</a></li>
+                        <li><a href="#"><i class="fab fa-medium"></i>&nbsp Medium</a></li>
+                        <li><a href="#"><i class="fab fa-spotify"></i>&nbsp Spotify</a></li>
+                        <li><a href="#"><i class="fab fa-blogger"></i>&nbsp Blogger</a></li>
+                        <li><a href="#"><i class="fab fa-soundcloud"></i>&nbsp SoundCloud</a></li>
+                        <li><a href="#"><i class="fab fa-dribbble-square"></i>&nbsp Dribbble</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i>&nbsp Youtube</a></li>
+                        <li><a href="#"><i class="fab fa-behance"></i>&nbsp Behance</a></li>
+                        <li><a href="#"><i class="fab fa-codepen"></i>&nbsp Codepen</a></li>
+                        <li><a href="#"><i class="fab fa-github"></i>&nbsp Github</a></li>
+                        <li><a href="#"><i class="fab fa-tumblr-square"></i>&nbsp Tumblr</a></li>
+                    </ul>
+                </div>
+            </div>
             <div class="content">
                 <ul class="project-cards">
                     <h2 class="content-title">
-                        <img src="{{ URL::asset('img/fire.gif') }}" height="30">&nbsp Ateşledikleri
+                        <img src="{{ URL::asset('img/fire.gif') }}" height="30">&nbsp Ateşledikleri (20)
                     </h2>
                     @for ($i = 0; $i < 5; $i++)
                         <li class="project-card">

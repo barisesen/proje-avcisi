@@ -1,8 +1,14 @@
 .circle-image
     border-radius: 100%
 
-@for $i from 1 through 8
+@for $i from 1 through 10
     $value: 18 + $i * 6
     .size-#{$value}
         width: 0px + $value
         height: 0px + $value
+
+.profile-image
+    img
+        border-radius: 100%
+        width: 72px
+        height: 72px
