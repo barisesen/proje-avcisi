@@ -8,6 +8,9 @@ use App\Jobs\AddUserPoint;
 use App\Jobs\ProjectViewCounter;
 use App\Models\Category;
 use App\Models\Project;
+use App\Models\ProjectTag;
+use App\Models\Tag;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
@@ -44,6 +47,7 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $this->validation($request);
+
         $project = new Project();
         $project->category_id = $request->category_id;
         $project->title = $request->title;
@@ -51,6 +55,8 @@ class ProjectController extends Controller
         $project->user_id = auth()->user()->id;
 
         if ($project->save()) {
+            $this->tags($project->id, explode(',', strtolower($string = str_replace(' ', '', $request->tags))));
+
             AddUserPoint::dispatch(auth()->user()->id, 'create_project', $project->id);
             return redirect()->route('projects.show', ['id' => $project->id])->with('success', 'Successfully completed.');
         }
@@ -65,13 +71,11 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $project = Project::findOrFail($id);
+        $project = Project::with('tags')->findOrFail($id);
         $user_id = auth()->user()->id;
         if (!Cache::store('redis')->has("{$project->id}_{$user_id}")) {
             AddProjectPoint::dispatch($project->id, 'view_project', $user_id);
             Cache::store('redis')->put("{$project->id}_{$user_id}", true, 1440);
-        } else {
-            dd(1);
         }
         return $project;
 //        return view('projects.show', compact('project'));
@@ -102,6 +106,10 @@ class ProjectController extends Controller
         $project->title = $request->title;
         $project->content = $request->content;
         if ($project->save()) {
+            $tags = explode(',', strtolower($string = str_replace(' ', '', $request->tags)));
+            ProjectTag::whereIn('name', $tags)->delete();
+            $this->tags($project->id, $tags);
+
             return redirect()->route('projects.show', ['id' => $project->id])->with('success', 'Successfully completed.');
         }
         return back()->with('error', 'Project not updated. Please try again');
@@ -128,6 +136,24 @@ class ProjectController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'category_id' => 'required|numeric',
+            'tags' => 'required|min:3'
         ]);
+    }
+
+    private function tags($project_id, $tags)
+    {
+        $tag_ids = [];
+        foreach ($tags as $tag) {
+            $tag_obj = Tag::where('name', $tag);
+            if ($tag_obj->exists()) {
+                array_push($tag_ids, ['tag_id' => $tag_obj->first()->id, 'project_id' => $project_id, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+            } else {
+                $new_tag = new Tag();
+                $new_tag->name = $tag;
+                $new_tag->save();
+                array_push($tag_ids, ['tag_id' => $new_tag->id, 'project_id' => $project_id, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+            }
+        }
+        $new_project_tags = ProjectTag::insert($tag_ids);
     }
 }
