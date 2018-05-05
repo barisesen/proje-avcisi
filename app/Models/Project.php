@@ -52,4 +52,8 @@ class Project extends Model
     public function tags() {
         return $this->belongsToMany(Tag::class, 'project_tags', 'project_id', 'tag_id');
     }
+
+    public function tools() {
+        return $this->belongsToMany(Tool::class, 'project_tools', 'project_id', 'tool_id');
+    }
 }

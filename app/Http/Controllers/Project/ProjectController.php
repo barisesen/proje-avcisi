@@ -9,7 +9,9 @@ use App\Jobs\ProjectViewCounter;
 use App\Models\Category;
 use App\Models\Project;
 use App\Models\ProjectTag;
+use App\Models\ProjectTool;
 use App\Models\Tag;
+use App\Models\Tool;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -55,7 +57,8 @@ class ProjectController extends Controller
         $project->user_id = auth()->user()->id;
 
         if ($project->save()) {
-            $this->tags($project->id, explode(',', strtolower($string = str_replace(' ', '', $request->tags))));
+            $this->tags($project->id, explode(',', strtolower($request->tags)));
+            $this->tools($project->id, explode(',', strtolower($request->tools)));
 
             AddUserPoint::dispatch(auth()->user()->id, 'create_project', $project->id);
             return redirect()->route('projects.show', ['id' => $project->id])->with('success', 'Successfully completed.');
@@ -71,7 +74,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $project = Project::with('tags')->findOrFail($id);
+        $project = Project::with('tags', 'tools')->findOrFail($id);
         $user_id = auth()->user()->id;
         if (!Cache::store('redis')->has("{$project->id}_{$user_id}")) {
             AddProjectPoint::dispatch($project->id, 'view_project', $user_id);
@@ -106,9 +109,12 @@ class ProjectController extends Controller
         $project->title = $request->title;
         $project->content = $request->content;
         if ($project->save()) {
-            $tags = explode(',', strtolower($string = str_replace(' ', '', $request->tags)));
+            $tags = explode(',', strtolower($request->tags));
+            $tools = explode(',', strtolower($request->tools));
             ProjectTag::whereIn('name', $tags)->delete();
+            ProjectTool::whereIn('name', $tools)->delete();
             $this->tags($project->id, $tags);
+            $this->tools($project->id, $tools);
 
             return redirect()->route('projects.show', ['id' => $project->id])->with('success', 'Successfully completed.');
         }
@@ -144,6 +150,7 @@ class ProjectController extends Controller
     {
         $tag_ids = [];
         foreach ($tags as $tag) {
+            $tag = trim($tag);
             $tag_obj = Tag::where('name', $tag);
             if ($tag_obj->exists()) {
                 array_push($tag_ids, ['tag_id' => $tag_obj->first()->id, 'project_id' => $project_id, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
@@ -155,5 +162,23 @@ class ProjectController extends Controller
             }
         }
         $new_project_tags = ProjectTag::insert($tag_ids);
+    }
+
+    private function tools($project_id, $tools)
+    {
+        $tool_ids = [];
+        foreach ($tools as $tool) {
+            $tool = trim($tool);
+            $tool_obj = Tool::where('name', $tool);
+            if ($tool_obj->exists()) {
+                array_push($tool_ids, ['tool_id' => $tool_obj->first()->id, 'project_id' => $project_id, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+            } else {
+                $new_tool = new Tool();
+                $new_tool->name = $tool;
+                $new_tool->save();
+                array_push($tool_ids, ['tool_id' => $new_tool->id, 'project_id' => $project_id, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+            }
+        }
+        $new_project_tags = ProjectTool::insert($tool_ids);
     }
 }
