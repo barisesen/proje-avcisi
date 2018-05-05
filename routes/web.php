@@ -13,6 +13,8 @@ Route::get('/paylas', 'Project\ProjectController@create')->name('share-project')
 
 // Kategori Single Sayfası
 Route::get('/kategori/{slug}', 'CategoryController@show')->name('category');
+Route::get('/tag/{slug}', 'TagController@show')->name('tag');
+Route::get('/tool/{slug}', 'ToolController@show')->name('tool');
 
 /*
  * Projects routing

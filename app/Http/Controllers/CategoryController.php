@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
@@ -47,7 +48,8 @@ class CategoryController extends Controller
     public function show($slug)
     {
         $category = Category::where('slug', $slug)->first();
-        return view('category.show', compact('category'));
+        $projects = Project::where('category_id', $category->id)->paginate(20);
+        return view('category.show', compact('category', 'projects'));
     }
 
     /**

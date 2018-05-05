@@ -157,6 +157,7 @@ class ProjectController extends Controller
             } else {
                 $new_tag = new Tag();
                 $new_tag->name = $tag;
+                $new_tag->slug = str_slug($tag, '-');
                 $new_tag->save();
                 array_push($tag_ids, ['tag_id' => $new_tag->id, 'project_id' => $project_id, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
             }
@@ -175,6 +176,7 @@ class ProjectController extends Controller
             } else {
                 $new_tool = new Tool();
                 $new_tool->name = $tool;
+                $new_tool->slug = str_slug($tool, '-');
                 $new_tool->save();
                 array_push($tool_ids, ['tool_id' => $new_tool->id, 'project_id' => $project_id, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
             }

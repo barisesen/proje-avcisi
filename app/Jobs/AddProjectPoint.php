@@ -42,5 +42,9 @@ class AddProjectPoint implements ShouldQueue
         $point->point_type_id = $this->point_type->id;
         $point->point = $this->point_type->value;
         $point->save();
+
+        // update project table point
+        $this->project->point = $this->project->points->sum('point');
+        $this->project->save();
     }
 }

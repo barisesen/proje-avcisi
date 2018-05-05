@@ -15,8 +15,8 @@ class DevController extends Controller
     {
 //        $user = Project::find(1);
 //        dd($user->points->sum('point'));
-        $project = Project::find(13);
-
+        $project = Project::find(18);
+        dd($project->points->sum('point'));
         dd($project->tags);
         $tag = Tag::find(1);
         dd($tag->projects);
