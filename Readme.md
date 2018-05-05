@@ -13,3 +13,8 @@ Jobların çalışabilmesi için
 ```
 php artisan queue:work --tries=1
 ```
+
+Fotoğraf yükleme çalışması için disk alanını linklememiz gereke:
+```
+php artisan storage:link
+```

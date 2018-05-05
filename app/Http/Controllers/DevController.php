@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Tag;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DevController extends Controller
 {
@@ -15,6 +16,7 @@ class DevController extends Controller
     {
 //        $user = Project::find(1);
 //        dd($user->points->sum('point'));
+        dd(Storage::url("public/project_medias/24/fDGJrBP70QkyawM9yGTeZFD44BcxxOi4n0ddqgYX.jpeg"));
         $project = Project::find(18);
         dd($project->points->sum('point'));
         dd($project->tags);

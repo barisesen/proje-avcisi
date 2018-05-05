@@ -8,6 +8,7 @@ use App\Jobs\AddUserPoint;
 use App\Jobs\ProjectViewCounter;
 use App\Models\Category;
 use App\Models\Project;
+use App\Models\ProjectMedia;
 use App\Models\ProjectTag;
 use App\Models\ProjectTool;
 use App\Models\Tag;
@@ -16,6 +17,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -57,6 +59,9 @@ class ProjectController extends Controller
         $project->user_id = auth()->user()->id;
 
         if ($project->save()) {
+            if ($request->hasFile('images')) {
+                $this->storeImages($request->images, $project->id);
+            }
             $this->tags($project->id, explode(',', strtolower($request->tags)));
             $this->tools($project->id, explode(',', strtolower($request->tools)));
 
@@ -142,7 +147,9 @@ class ProjectController extends Controller
             'title' => 'required|max:255',
             'content' => 'required',
             'category_id' => 'required|numeric',
-            'tags' => 'required|min:3'
+            'tags' => 'required|min:3',
+            'images' => 'required',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
     }
 
@@ -182,5 +189,18 @@ class ProjectController extends Controller
             }
         }
         $new_project_tags = ProjectTool::insert($tool_ids);
+    }
+
+    private function storeImages($images, $project_id)
+    {
+        foreach ($images as $image) {
+            $resp = Storage::put("public/project_medias/{$project_id}", $image);
+            if ($resp) {
+                $photo = new ProjectMedia();
+                $photo->url = $resp;
+                $photo->project_id = $project_id;
+                $photo->save();
+            }
+        }
     }
 }

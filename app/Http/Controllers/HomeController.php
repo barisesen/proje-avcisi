@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Project;
 use App\Models\ProjectTool;
 use Illuminate\Http\Request;
@@ -32,6 +33,7 @@ class HomeController extends Controller
         $projects = Project::with('likes', 'category', 'tags', 'tools', 'comments')->whereIn('category_id', $following_categories)
             ->orderBy('projects.point', 'Desc')
             ->paginate();
+
         return view('home', compact('projects'));
     }
 }

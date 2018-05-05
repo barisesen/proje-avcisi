@@ -3,7 +3,7 @@
 @section('content')
 <div class="wrapper">
     <div class="container">
-        <form class="create-project-form flex space-between" action="{{route('projects.store')}}" method="POST">
+        <form class="create-project-form flex space-between" action="{{route('projects.store')}}" enctype="multipart/form-data" method="POST">
             @csrf
             <div class="leftbar">
                 <div class="card">
@@ -19,6 +19,9 @@
                     <div class="form-group">
                         <h4 class="card-title">Proje Hakkında</h4>
                         <textarea name="content" class="form-text form-textarea" placeholder="Proje hakkında bilgi (En az 320 karakter)"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="images[]" multiple>
                     </div>
                 </div>
             </div>

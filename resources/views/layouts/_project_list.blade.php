@@ -6,7 +6,7 @@
             </div>
             <div class="project-info">
                 <h2 class="project-name"><a href="#">{{$project->title}}</a></h2>
-                <p class="project-description">Dribbble is where designers get inspired and hired.</p>
+                <p class="project-description">{{ str_limit($project->content, $limit = 200, $end = '...') }}</p>
                 <div class="project-bottom flex space-between">
                     <div class="project-category">
                         <a class="category-chip" href="kategori/{{$project->category->slug}}"><i class="fas fa-columns"></i> {{$project->category->name}}</a>
