@@ -22,14 +22,16 @@
                         <li class="project-card">
                             <div class="project-card-inside flex space-between">
                                 <div class="project-image">
-                                    <img src="{{ URL::asset('img/app2.png') }}" alt="">
+                                    <a href="{{ url('proje/1/asd') }}">
+                                        <img src="{{ URL::asset('img/app2.png') }}" alt="">
+                                    </a>
                                 </div>
                                 <div class="project-info">
-                                    <h2 class="project-name"><a href="#">Dribbble</a></h2>
+                                    <h2 class="project-name"><a href="{{ url('proje/1/asd') }}">Dribbble</a></h2>
                                     <p class="project-description">Dribbble is where designers get inspired and hired.</p>
                                     <div class="project-bottom flex space-between">
                                         <div class="project-category">
-                                            <a class="category-chip" href="{{ url('kategori/yazilim') }}"><i class="fas fa-columns"></i> Tasarım</a>
+                                            <a class="category-chip" href="{{ url('kategori/yazilim') }}">Tasarım</a>
                                         </div>
                                         <div class="card-buttons flex flex-end">
                                             <form class="" action="" method="POST">

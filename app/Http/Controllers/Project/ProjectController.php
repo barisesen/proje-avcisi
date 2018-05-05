@@ -57,13 +57,17 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $slug)
     {
         $project = Project::findOrFail($id);
-        return $project;
-//        return view('projects.show', compact('project'));
+        return view('project.show', compact('project'));
     }
 
+    public function liked_users($id, $slug)
+    {
+        $project = Project::findOrFail($id);
+        return view('project.liked_users', compact('project'));
+    }
 
     /**
      * @param $id

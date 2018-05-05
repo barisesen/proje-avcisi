@@ -6,6 +6,9 @@
     border-radius: $main-radius
     margin-bottom: $main-padding
 
+.sm-padding
+    padding: 10px $main-padding
+
 .project-card
     @extend .card
     width: $content-width - $main-padding * 2
@@ -80,3 +83,20 @@
 .sm-category-card a:hover
     color: #666
     border: 1px solid rgba(0,0,0,0.04)
+
+.card-links
+    li
+        a
+            display: block
+            color: #888
+            line-height: 32px
+            @include transition(.1s)
+            border-bottom: 1px solid rgba(0,0,0,0.03)
+            padding: 10px 5px
+            font-weight: bold
+            svg
+                width: 20px !important
+                display: inline-block
+        a:hover
+            background-color: rgba(0,0,0,0.02)
+            color: #666

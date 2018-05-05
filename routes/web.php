@@ -17,6 +17,10 @@ Route::get('/kategori/{slug}', 'CategoryController@show')->name('category');
 // Profil Sayfası
 Route::get('/uye/{username}', 'UserController@show')->name('user');
 
+// Proje Single Sayfası
+Route::get('/proje/{id}/{slug}', 'Project\ProjectController@show')->name('project');
+Route::get('/proje/{id}/{slug}/atesleyenler', 'Project\ProjectController@liked_users')->name('liked_users');
+
 /*
  * Projects routing
  */
