@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Project;
 use App\Jobs\AddPoint;
 use App\Jobs\AddProjectPoint;
 use App\Jobs\AddUserPoint;
+use App\Jobs\ProjectViewCounter;
 use App\Models\Category;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class ProjectController extends Controller
 {
@@ -64,7 +66,13 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        AddProjectPoint::dispatch($id, 'view_project', auth()->user()->id);
+        $user_id = auth()->user()->id;
+        if (!Cache::store('redis')->has("{$project->id}_{$user_id}")) {
+            AddProjectPoint::dispatch($project->id, 'view_project', $user_id);
+            Cache::store('redis')->put("{$project->id}_{$user_id}", true, 1440);
+        } else {
+            dd(1);
+        }
         return $project;
 //        return view('projects.show', compact('project'));
     }
