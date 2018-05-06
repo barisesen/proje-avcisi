@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Follow;
 
+use App\Jobs\AddNotification;
 use App\Models\Follow;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,6 +18,7 @@ class FollowController extends Controller
         $follow->user_id = $request->user_id;
         $follow->follower_id = auth()->user()->id;
         if ($follow->save()) {
+            AddNotification::dispatch(auth()->user()->id, $request->user_id, 'Seni takip etmeye başladı.', null);
             return response()->json([
                 'status' => 200,
                 'message' => 'Successful'

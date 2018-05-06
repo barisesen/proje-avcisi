@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Project;
 
 use App\Jobs\AddFeed;
+use App\Jobs\AddNotification;
 use App\Jobs\AddProjectPoint;
 use App\Jobs\AddUserPoint;
 use App\Models\Comment;
@@ -24,9 +25,11 @@ class CommentController extends Controller
         $comment->project_id = $id;
         $comment->content = $request->content;
         if ($comment->save()) {
+            AddNotification::dispatch(auth()->user()->id, $project->user_id, 'Yeni bir yorum ateşledi!', $project->id);
             AddUserPoint::dispatch(auth()->user()->id, 'add_comment_user', $project->id);
             AddProjectPoint::dispatch($project->id, 'add_comment_project', auth()->user()->id);
             AddFeed::dispatch($id, auth()->user()->id, 'Yorum Yaptı');
+
             return response()->json([
                 'message' => "Successful",
                 'status' => 200

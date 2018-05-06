@@ -14,6 +14,9 @@ class DevController extends Controller
 {
     public function index()
     {
+        $user = User::find(1);
+        dd($user->followers()->pluck('follower_id'));
+
 //        $user = Project::find(1);
 //        dd($user->points->sum('point'));
         dd(Storage::url("public/project_medias/24/fDGJrBP70QkyawM9yGTeZFD44BcxxOi4n0ddqgYX.jpeg"));

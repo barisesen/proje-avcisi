@@ -18,7 +18,6 @@ class AddFeed implements ShouldQueue
     protected $event;
     protected $rel_id;
 
-
     /**
      * AddFeed constructor.
      * @param $project_id
@@ -44,7 +43,6 @@ class AddFeed implements ShouldQueue
         $feed->user_id = $this->user_id;
         $feed->project_id = $this->project_id;
         $feed->event = $this->event;
-        $feed->rel_id = $this->rel_id;
         $feed->save();
     }
 }

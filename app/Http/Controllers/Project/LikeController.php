@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Project;
 
 use App\Jobs\AddFeed;
+use App\Jobs\AddNotification;
 use App\Jobs\AddProjectPoint;
 use App\Jobs\AddUserPoint;
 use App\Models\Like;
@@ -28,6 +29,7 @@ class LikeController extends Controller
         $like->project_id = $project->id;
 
         if ($like->save()) {
+            AddNotification::dispatch(auth()->user()->id, $project->user_id, 'Bir beğeni ateşledi!', $project->id);
             AddUserPoint::dispatch(auth()->user()->id, 'add_like_user', $id);
             AddProjectPoint::dispatch($id, 'add_like_project', auth()->user()->id);
             AddFeed::dispatch($id, auth()->user()->id, 'Projesini Beğendi.');
