@@ -11,10 +11,47 @@ use App\Models\Project;
 use App\Models\UserPoint;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use ScoutElastic\Searchable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use Searchable;
+    protected $indexConfigurator = ProjectIndexConfigurator::class;
+    /**
+     * @var array
+     */
+    protected $searchRules = [
+        //
+    ];
+
+    /**
+     * @var array
+     */
+    protected $mapping = [
+        'properties' => [
+            'id' => [
+                'type' => 'integer',
+                'index' => 'not_analyzed'
+            ],
+            'username' => [
+                'type' => 'string',
+                'analyzer' => 'turkish'
+            ],
+            'first_name' => [
+                'type' => 'string',
+                'analyzer' => 'turkish'
+            ],
+            'last_name' => [
+                'type' => 'string',
+                'analyzer' => 'turkish'
+            ],
+            'email' => [
+                'type' => 'string',
+                'analyzer' => 'turkish'
+            ]
+        ]
+    ];
 
     /**
      * The attributes that are mass assignable.

@@ -2,11 +2,76 @@
 
 namespace App\Models;
 
+use App\ProjectIndexConfigurator;
+use App\ProjectSearchRule;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use ScoutElastic\Searchable;
 
 class Project extends Model
 {
+    use Searchable;
+    protected $indexConfigurator = ProjectIndexConfigurator::class;
+    /**
+     * @var array
+     */
+    protected $searchRules = [
+        ProjectSearchRule::class
+    ];
+
+    /**
+     * @var array
+     */
+    protected $mapping = [
+        'properties' => [
+            'id' => [
+                'type' => 'integer',
+                'index' => 'not_analyzed'
+            ],
+            'title' => [
+                'type' => 'string',
+                'analyzer' => 'turkish'
+            ],
+            'content' => [
+                'type' => 'string',
+                'analyzer' => 'turkish'
+            ],
+            'user_id' => [
+                'type' => 'integer',
+                'index' => 'not_analyzed'
+            ],
+            'category_id' => [
+                'type' => 'integer',
+                'index' => 'not_analyzed'
+            ],
+            'point' => [
+                'type' => 'integer',
+                'index' => 'not_analyzed'
+            ],
+            'user_username' => [
+                'type' => 'string',
+                'index' => 'not_analyzed'
+            ],
+            'category_name' => [
+                'type' => 'string',
+                'index' => 'not_analyzed'
+            ],
+            'tag_names' => [
+                'type' => 'string',
+                'index' => 'not_analyzed'
+            ],
+            'tool_names' => [
+                'type' => 'string',
+                'index' => 'not_analyzed'
+            ],
+            'comment_contents' => [
+                'type' => 'string',
+                'index' => 'not_analyzed'
+            ]
+
+        ]
+    ];
+
     protected $fillable = [
         'title', 'category_id', 'content'
     ];
@@ -61,4 +126,18 @@ class Project extends Model
     {
         return $this->hasMany(Feed::class);
     }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        // Customize array...
+        return array_merge($array, [
+            'user_username' => $this->user->username,
+            'category_name' => $this->category->name,
+            'tags' => $this->tags()->pluck('name'),
+            'tools' => $this->tools()->pluck('name'),
+            'comment_contents' => $this->comments()->pluck('content')
+        ]);
+    }
+
 }

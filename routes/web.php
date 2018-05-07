@@ -8,6 +8,8 @@ Route::post('/register/check/email', 'Auth\RegisterController@checkEmail');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/search', 'SearchController@index');
+
 // Proje Ekle/Düzenle/Sil
 Route::get('/paylas', 'Project\ProjectController@create')->name('share-project');
 
