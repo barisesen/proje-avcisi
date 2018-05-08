@@ -96,7 +96,10 @@ class ProjectController extends Controller
         }
         $likes = Like::with('user')->where('project_id', $project->id)->orderBy('id', 'Desc')->take(10)->get();
         $comments = Comment::with('user')->where('project_id', $project->id)->orderBy('created_at', 'desc')->get();
-        $isLiked = Like::where('project_id', $id)->where('user_id', auth()->user()->id)->exists();
+        $isLiked = false;
+        if (auth()->check()) {
+            $isLiked = Like::where('project_id', $id)->where('user_id', auth()->user()->id)->exists();
+        }
         $view = PointType::where('name', 'view_project')->first();
         $viewCount = ProjectPoint::where('point_type_id', $view->id)->where('project_id', $id)->sum('point');
         return view('project.show', compact('project', 'likes', 'comments', 'isLiked', 'viewCount'));

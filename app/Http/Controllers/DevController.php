@@ -14,6 +14,9 @@ class DevController extends Controller
 {
     public function index()
     {
+
+
+
         dd(Project::search("laravel api *asd*ad*sa*ads*")->paginate(5));
         $user = User::find(1);
         dd($user->followers()->pluck('follower_id'));
