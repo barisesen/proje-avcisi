@@ -140,7 +140,7 @@ pre {
 
 .block {
   padding: 20px;
-  background: #2d3035;
+  background: whitesmoke;
   color: #8a8d93;
   margin-bottom: 30px;
 }
@@ -162,7 +162,7 @@ pre {
 
 .page-content {
   position: relative;
-  background: #22252a;
+  background: white;
   min-height: 100vh;
   width: calc(100% - 280px);
   padding: 0;
@@ -175,8 +175,6 @@ pre {
 
 .page-header {
   padding: 20px 15px;
-  background: #2d3035;
-  color: #8a8d93;
   margin-bottom: 30px;
 }
 
@@ -196,7 +194,7 @@ pre {
   color: #8a8d93;
   font-size: 1rem;
   min-width: 200px;
-  background: #2d3035;
+  background: rgba(45, 48, 53, 0.95);;
   border-radius: 0;
   padding: 0;
   /*margin-top: 21px;*/
@@ -332,7 +330,7 @@ i[class*='icon-'] {
 * ==========================================================
 */
 nav.navbar {
-  background: #2d3035;
+  background: #19162d;
   color: #8a8d93;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -346,7 +344,7 @@ nav.navbar .sidebar-toggle {
   line-height: 29px;
   text-align: center;
   border-radius: 50%;
-  background: #282b2f;
+  background: ghostwhite;
   color: #8a8d93;
   font-size: 1.1rem;
   border: 2px solid #3d4148;
@@ -354,7 +352,7 @@ nav.navbar .sidebar-toggle {
 }
 
 nav.navbar a {
-  color: inherit;
+  color: white;
 }
 
 nav.navbar .brand-text {
@@ -653,14 +651,13 @@ nav.navbar .dropdown .dropdown-menu.active {
 */
 nav#sidebar {
   width: 280px;
-  background: #2d3035;
   color: #6a6c70;
   border-right: 1px solid #34373d;
-  /* shrinked navbar */
+  background: #19162d;
 }
 
 nav#sidebar a {
-  color: inherit;
+  color: white;
   text-decoration: none;
   position: relative;
 }
@@ -674,10 +671,6 @@ nav#sidebar a[data-toggle="collapse"]::after {
   position: absolute;
   top: 50%;
   right: 20px;
-}
-
-nav#sidebar a[aria-expanded="true"] {
-  background: #34373d;
 }
 
 nav#sidebar a[aria-expanded="true"]::after {
@@ -734,10 +727,6 @@ nav#sidebar ul {
 
 nav#sidebar li {
   position: relative;
-  /* menu item */
-  /* submenu item */
-  /* menu item active */
-  /* submenu item active */
 }
 
 nav#sidebar li a {
@@ -747,7 +736,6 @@ nav#sidebar li a {
 }
 
 nav#sidebar li a:hover {
-  background: #34373d;
 }
 
 nav#sidebar li a:hover i {
@@ -765,11 +753,9 @@ nav#sidebar li a i {
 nav#sidebar li li a {
   padding: 14px;
   padding-left: 60px;
-  background: #22252a;
 }
 
 nav#sidebar li li a:hover {
-  background: #292c32;
 }
 
 nav#sidebar li li a:hover i {
@@ -932,7 +918,6 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
 /* Statistic Block */
 .statistic-block {
   padding: 20px;
-  background: #2d3035;
   color: #8a8d93;
 }
 
@@ -1208,6 +1193,17 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
   margin-top: 10px;
 }
 
+.avatar2 img {
+    min-width: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+    margin-left: 15px;
+    margin-right: 15px;
+    position: relative;
+    overflow: hidden;
+}
 /* Public user Block */
 .public-user-block .avatar {
   min-width: 50px;
@@ -1381,7 +1377,7 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
 }
 
 .checklist-block .item:nth-of-type(even) {
-  background: #282b2f;
+  background: lightskyblue;
 }
 
 .checklist-block input:checked + label {
@@ -1539,7 +1535,7 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
 }
 
 .login-page .form-holder .info {
-  background: rgba(219, 101, 116, 0.95);
+  background: #19162d;
   color: #fff;
 }
 
@@ -1903,10 +1899,6 @@ input.input-material ~ label.is-invalid ~ label {
 .table-striped tbody tr {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #282b2f;
 }
 
 .table-striped tbody tr:nth-of-type(odd):hover {
@@ -3213,7 +3205,6 @@ pre code {
 * 8. CARD
 */
 .card {
-  background-color: #2d3035;
   border: 1px solid #34373d;
   border-radius: 0;
 }
@@ -3321,4 +3312,7 @@ pre code {
 .card .list-group-item {
   background: #2d3035;
   border-color: #34373d;
+}
+nav#sidebar li {
+    list-style: none;
 }
