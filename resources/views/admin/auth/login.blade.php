@@ -6,12 +6,11 @@
             <div class="form-holder has-shadow">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="info d-flex align-items-center">
-                            <div class="content">
-                                <div class="logo">
+                        <div class="info d-flex align-items-center row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
                                     <h1>Giriş Yap</h1>
                                 </div>
-                            </div>
                         </div>
                     </div>
                     <div class="col-lg-6 bg-white">
