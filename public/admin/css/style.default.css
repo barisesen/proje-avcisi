@@ -1,5 +1,6 @@
 body {
   position: relative;
+  color: black !important;
 }
 
 section {
@@ -1472,7 +1473,6 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
 
 .modal-open .modal .modal-content {
   border-radius: 0;
-  background: #2d3035;
 }
 
 .modal-open .modal .modal-header,
