@@ -20,9 +20,7 @@ class LikeController extends Controller
          * did you like it before
          */
         if (Like::where('user_id', auth()->user()->id)->where('project_id', $id)->exists()) {
-            return response()->json([
-                'message' => 'Already liked!'
-            ], 400);
+            return redirect()->back()->with('error', 'Already liked!');
         }
         $like = new Like();
         $like->user_id = auth()->user()->id;
@@ -33,33 +31,23 @@ class LikeController extends Controller
             AddUserPoint::dispatch(auth()->user()->id, 'add_like_user', $id);
             AddProjectPoint::dispatch($id, 'add_like_project', auth()->user()->id);
             AddFeed::dispatch($id, auth()->user()->id, 'Projesini Beğendi.');
-            return response()->json([
-                'message' => 'Successful'
-            ], 200);
+            return redirect()->back()->with('message', 'Successful');
         }
-        return response()->json([
-            'message' => 'something went wrong!'
-        ], 500);
+        return redirect()->back()->with('error', 'something went wrong!');
     }
 
     public function destroy($id)
     {
         $project = Project::findOrFail($id);
         if (!Like::where('user_id', auth()->user()->id)->where('project_id', $id)->exists()) {
-            return response()->json([
-                'message' => 'Do not like it anyway!'
-            ], 400);
+            return redirect()->back()->with('error', 'Do not like it anyway!');
         }
         $like = Like::where('project_id', $id)->where('user_id', auth()->user()->id)->delete();
         if ($like) {
             AddUserPoint::dispatch(auth()->user()->id, 'delete_like_user', $id);
             AddProjectPoint::dispatch($id, 'delete_like_project', auth()->user()->id);
-            return response()->json([
-                'message' => 'Successful'
-            ], 200);
+            return redirect()->back()->with('message', 'Successful');
         }
-        return response()->json([
-            'message' => 'something went wrong!'
-        ], 500);
+        return redirect()->back()->with('error', 'something went wrong!');
     }
 }

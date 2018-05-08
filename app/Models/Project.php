@@ -140,4 +140,8 @@ class Project extends Model
         ]);
     }
 
+    public function medias()
+    {
+        return $this->hasMany(ProjectMedia::class);
+    }
 }

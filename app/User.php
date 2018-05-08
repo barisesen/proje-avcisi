@@ -8,6 +8,7 @@ use App\Models\Feed;
 use App\Models\Follow;
 use App\Models\Like;
 use App\Models\Project;
+use App\Models\UserLink;
 use App\Models\UserPoint;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -114,5 +115,10 @@ class User extends Authenticatable
     public function feeds()
     {
         return $this->hasMany(Feed::class);
+    }
+
+    public function links()
+    {
+        return $this->hasMany(UserLink::class);
     }
 }

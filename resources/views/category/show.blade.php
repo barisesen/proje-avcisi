@@ -18,7 +18,9 @@
                     @include('layouts._project_list')
                 </ul>
             </div>
-            @include('layouts.sidebar')
+            @if(!auth()->guest())
+                @include('layouts.sidebar')
+            @endif
         </div>
     </div>
 </div>
