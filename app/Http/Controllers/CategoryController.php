@@ -49,6 +49,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('slug', $slug)->first();
         $projects = Project::where('category_id', $category->id)->paginate(20);
+
         return view('category.show', compact('category', 'projects'));
     }
 

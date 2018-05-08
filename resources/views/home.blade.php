@@ -6,7 +6,7 @@
         <div class="category-cards">
             <div class="ending-shadow"></div>
             <ul>
-                @foreach ($categories as $category)<li class="category-card" style="background-color:{{ $category->color }}">
+                @foreach ($categories as $category)<li class="category-card" style="background-color:{{ $category->color }} !important;">
                         <a href="{{ url('kategori/' . $category->slug) }}">{{ $category->name }}</a>
                 </li>@endforeach
             </ul>
@@ -19,7 +19,6 @@
                         <img src="{{ URL::asset('img/fire.gif') }}" height="30">&nbsp Bugün En Çok Ateşlenenler
                     </h2>
                     @include('layouts._project_list')
-
                 </ul>
             </div>
             @include('layouts.sidebar')

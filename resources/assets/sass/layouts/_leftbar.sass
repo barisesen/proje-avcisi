@@ -1,2 +1,15 @@
 .leftbar
     width: $left-width
+
+.social-links
+    li
+        a
+            display: block
+            color: #aaa
+            line-height: 32px
+            @include transition(.1s)
+            svg
+                width: 20px !important
+                display: inline-block
+        a:hover
+            color: #888

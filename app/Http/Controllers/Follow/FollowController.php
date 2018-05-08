@@ -19,15 +19,9 @@ class FollowController extends Controller
         $follow->follower_id = auth()->user()->id;
         if ($follow->save()) {
             AddNotification::dispatch(auth()->user()->id, $request->user_id, 'Seni takip etmeye başladı.', null);
-            return response()->json([
-                'status' => 200,
-                'message' => 'Successful'
-            ], 200);
+            return redirect()->back()->with('message', 'Successful');
         }
-        return response()->json([
-            'status' => 400,
-            'message' => 'Something went wrong'
-        ], 400);
+        return redirect()->back()->with('error', 'Something went wrong');
     }
 
     public function destroy(Request $request)

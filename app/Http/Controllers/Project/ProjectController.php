@@ -9,8 +9,12 @@ use App\Jobs\AddProjectPoint;
 use App\Jobs\AddUserPoint;
 use App\Jobs\ProjectViewCounter;
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Like;
+use App\Models\PointType;
 use App\Models\Project;
 use App\Models\ProjectMedia;
+use App\Models\ProjectPoint;
 use App\Models\ProjectTag;
 use App\Models\ProjectTool;
 use App\Models\Tag;
@@ -82,16 +86,27 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $project = Project::with('tags', 'tools')->findOrFail($id);
-        $user_id = auth()->user()->id;
-        if (!Cache::store('redis')->has("{$project->id}_{$user_id}")) {
-            AddProjectPoint::dispatch($project->id, 'view_project', $user_id);
-            Cache::store('redis')->put("{$project->id}_{$user_id}", true, 1440);
+        $project = Project::with('tags', 'tools', 'comments', 'likes')->findOrFail($id);
+        if  (auth()->check()) {
+            $user_id = auth()->user()->id;
+            if (!Cache::store('redis')->has("{$project->id}_{$user_id}")) {
+                AddProjectPoint::dispatch($project->id, 'view_project', $user_id);
+                Cache::store('redis')->put("{$project->id}_{$user_id}", true, 1440);
+            }
         }
-        return $project;
-//        return view('projects.show', compact('project'));
+        $likes = Like::with('user')->where('project_id', $project->id)->orderBy('id', 'Desc')->take(10)->get();
+        $comments = Comment::with('user')->where('project_id', $project->id)->orderBy('created_at', 'desc')->get();
+        $isLiked = Like::where('project_id', $id)->where('user_id', auth()->user()->id)->exists();
+        $view = PointType::where('name', 'view_project')->first();
+        $viewCount = ProjectPoint::where('point_type_id', $view->id)->where('project_id', $id)->sum('point');
+        return view('project.show', compact('project', 'likes', 'comments', 'isLiked', 'viewCount'));
     }
 
+    public function liked_users($id, $slug)
+    {
+        $project = Project::findOrFail($id);
+        return view('project.liked_users', compact('project'));
+    }
 
     /**
      * @param $id
