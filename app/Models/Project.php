@@ -127,6 +127,11 @@ class Project extends Model
         return $this->hasMany(Feed::class);
     }
 
+    public function links()
+    {
+        return $this->hasMany(ProjectLink::class);
+    }
+
     public function toSearchableArray()
     {
         $array = $this->toArray();

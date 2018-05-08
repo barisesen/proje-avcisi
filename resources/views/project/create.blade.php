@@ -9,6 +9,18 @@
                 <div class="card">
                     <i class="fas fa-image fa-2x"></i> Logo
                 </div>
+                <div class="card">
+                    <h4 class="card-title">Android Linki</h4>
+                    <input type="text" class="form-text" name="android" placeholder="https://...">
+                </div>
+                <div class="card">
+                    <h4 class="card-title">Apple Linki</h4>
+                    <input type="text" class="form-text" name="apple" placeholder="https://...">
+                </div>
+                <div class="card">
+                    <h4 class="card-title">Web Linki</h4>
+                    <input type="text" class="form-text" name="link" placeholder="https://...">
+                </div>
             </div>
             <div class="content">
                 <div class="card">

@@ -30,15 +30,9 @@ class CommentController extends Controller
             AddProjectPoint::dispatch($project->id, 'add_comment_project', auth()->user()->id);
             AddFeed::dispatch($id, auth()->user()->id, 'Yorum Yaptı');
 
-            return response()->json([
-                'message' => "Successful",
-                'status' => 200
-            ], 200);
+            return back();
         }
-        return response()->json([
-            'status' => 400,
-            'message' => 'Something went wrong!'
-        ] ,400);
+        return back();
     }
 
     public function destroy($id)
@@ -48,15 +42,9 @@ class CommentController extends Controller
             if ($comment->delete()) {
                 AddUserPoint::dispatch(auth()->user()->id, 'delete_comment_user', $comment->project->id);
                 AddProjectPoint::dispatch($comment->project->id, 'delete_comment_project', auth()->user()->id);
-                return response()->json([
-                    'message' => 'Successful',
-                    'status' => 200
-                ], 200);
+                return back();
             }
         }
-        return response()->json([
-            'message' => 'Something went wrong',
-            'status' => 400
-        ], 400);
+        return back();
     }
 }

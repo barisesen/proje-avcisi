@@ -13,6 +13,7 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\PointType;
 use App\Models\Project;
+use App\Models\ProjectLink;
 use App\Models\ProjectMedia;
 use App\Models\ProjectPoint;
 use App\Models\ProjectTag;
@@ -70,6 +71,7 @@ class ProjectController extends Controller
             }
             $this->tags($project->id, explode(',', strtolower($request->tags)));
             $this->tools($project->id, explode(',', strtolower($request->tools)));
+            $this->links($project->id, $request);
             AddNotification::dispatch(auth()->user()->id, 'followers', 'Yeni bir proje ateşledi!', $project->id);
             AddFeed::dispatch($project->id, auth()->user()->id, 'Proje paylaştı');
             AddUserPoint::dispatch(auth()->user()->id, 'create_project', $project->id);
@@ -86,7 +88,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        $project = Project::with('tags', 'tools', 'comments', 'likes')->findOrFail($id);
+        $project = Project::with('tags', 'tools', 'comments', 'likes', 'links')->findOrFail($id);
         if  (auth()->check()) {
             $user_id = auth()->user()->id;
             if (!Cache::store('redis')->has("{$project->id}_{$user_id}")) {
@@ -223,5 +225,29 @@ class ProjectController extends Controller
                 $photo->save();
             }
         }
+    }
+
+    private function links($project_id, $request)
+    {
+        if ($request->has('android')) {
+            $this->saveLink($project_id, 'android', $request->android);
+        }
+        if ($request->has('apple')) {
+            $this->saveLink($project_id, 'apple', $request->apple);
+        }
+
+        if ($request->has('link')) {
+            $this->saveLink($project_id, 'link', $request->link);
+        }
+    }
+
+    private function saveLink($project_id, $name, $url)
+    {
+        $link = new ProjectLink();
+        $link->name = $name;
+        $link->url = $url;
+        $link->icon = "fab fa-{$name}";
+        $link->project_id = $project_id;
+        $link->save();
     }
 }

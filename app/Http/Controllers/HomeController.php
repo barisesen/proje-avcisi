@@ -46,6 +46,7 @@ class HomeController extends Controller
             ->where('created_at', '>', Carbon::now()->subMonth())
             ->orderBy('projects.point', 'Desc')
             ->paginate();
+
         return view('home', compact('projects'));
     }
 }
