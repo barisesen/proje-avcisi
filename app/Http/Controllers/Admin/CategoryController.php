@@ -37,7 +37,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd(1);
     }
 
     /**

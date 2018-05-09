@@ -36,7 +36,7 @@
                             @if(isset($projects))
                                 @foreach($projects as $project)
                                     <tr>
-                                        <th scope="row">{{ $project->id }}</th>
+                                        <th scope="row"><a href="/admin/projects/{{$project->id}}">{{ $project->id }}</a></th>
                                         <td>{{ $project->id}}</td>
                                         <td>{{ $project->title }}</td>
                                         <td>{{ $project->content }}</td>
@@ -74,9 +74,6 @@
                         <div class="form-group">
                             <label>Proje Açıklaması</label>
                             <textarea name="content" class="form-control form-textarea" placeholder="Proje hakkında bilgi (En az 320 karakter)"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="file" name="images[]" multiple>
                         </div>
                         <div class="form-group">
                             <label>Kategori</label>

@@ -59,7 +59,19 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
+                    <form action="/admin/categories" method="post">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Kategori İsmi Giriniz">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="slug" class="form-control" placeholder="Slug  Giriniz">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="color" class="form-control" placeholder="Color  Giriniz" value="#e67e22">
+                        </div>
+                        <input type="submit" class="btn btn-success btn-block" value="Ekle">
+                    </form>
                 </div>
             </div>
         </div>

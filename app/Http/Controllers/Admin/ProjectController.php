@@ -26,7 +26,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.project.create');
     }
 
     /**
@@ -42,15 +42,7 @@ class ProjectController extends Controller
         $project->title = $request->title;
         $project->content = $request->content;
         $project->user_id = auth()->user()->id;
-
-        if ($project->save()) {
-            if ($request->hasFile('images')) {
-                $this->storeImages($request->images, $project->id);
-            }
-            $this->tags($project->id, explode(',', strtolower($request->tags)));
-            $this->tools($project->id, explode(',', strtolower($request->tools)));
-            dd(1);
-        }
+        return back();
     }
 
     /**
@@ -61,7 +53,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::where('id', $id)->first();
+        return view('admin.project.show', compact('project'));
     }
 
     /**
@@ -97,4 +90,5 @@ class ProjectController extends Controller
     {
         //
     }
+
 }

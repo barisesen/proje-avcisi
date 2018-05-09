@@ -7,5 +7,5 @@ Route::get('/', 'DashBoardController@index');
 Route::resource('/projects', 'ProjectController', ["as"=>"admin"]);
 Route::resource('/users', 'UserController', ["as"=>"admin"]);
 Route::resource('/tools', 'ToolController', ["as"=>"admin"]);
-Route::resource('/categories', 'CategoryController', ["as"=>"admin"]);
+Route::resource('/categories', 'CategoryController', ["as" => "admin"]);
 
