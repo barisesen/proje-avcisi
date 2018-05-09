@@ -26,7 +26,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.project.create');
     }
 
     /**
@@ -37,7 +37,12 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $project = new Project();
+        $project->category_id = $request->category_id;
+        $project->title = $request->title;
+        $project->content = $request->content;
+        $project->user_id = auth()->user()->id;
+        return back();
     }
 
     /**
@@ -48,7 +53,8 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        $project = Project::where('id', $id)->first();
+        return view('admin.project.show', compact('project'));
     }
 
     /**
@@ -84,4 +90,5 @@ class ProjectController extends Controller
     {
         //
     }
+
 }

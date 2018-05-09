@@ -42,15 +42,14 @@ class AuthController extends Controller
         return redirect('/admin/login')->with('error', 'email or password not valid');
     }
 
-    public function register()
+    public function register(Request $request)
     {
         $admin = new Admin();
-        $admin->name = 'admin';
-        $admin->email = 'admin@admin.com';
-        $admin->password = bcrypt('123456');
+        $admin->name = $request->name;
+        $admin->email = $request->email;
+        $admin->password = bcrypt($request->password);
         $admin->save();
-
-        return $admin;
+        return back();
     }
 
     public function logout()
@@ -59,4 +58,9 @@ class AuthController extends Controller
         return redirect('/');
     }
 
+    public function destroy(Request $request)
+    {
+        Admin::find($request->id)->delete();
+        return back();
+    }
 }
