@@ -8,7 +8,7 @@
             <div class="nav-search">
                 <form class="nav-search-form flex space-between vertical-center" action="/search" method="GET">
                     <input type="text" name="q" class="nav-search-text" placeholder="Proje ara..">
-                    <button type="submit" name="button" class="nav-search-btn"><i class="fas fa-search fa-lg"></i></button>
+                    <button type="submit" class="nav-search-btn"><i class="fas fa-search fa-lg"></i></button>
                 </form>
             </div>
         </div>

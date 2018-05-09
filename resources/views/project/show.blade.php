@@ -40,6 +40,14 @@
                 </div>
                 <div class="card">
                     <h3 class="card-title">Yorumlar ({{$project->comments->count()}})</h3>
+                    <div class="card form-group">
+                        <form action="/projects/{{$project->id}}/comment" method="post">
+                            <h4 class="card-title">Yorum Ekle</h4>
+                            @csrf
+                            <textarea type="text" class="form-text form-textarea" name="content" rows="15"></textarea>
+                            <input type="submit" value="Yorumla" class="button full-btn blue-bg side-btn">
+                        </form>
+                    </div>
                     <ul class="comments">
                         @foreach($comments as $comment)
                             <li class="comment flex">
@@ -71,9 +79,9 @@
                 <div class="card">
                     <h3 class="card-title">Proje Bağlantıları</h3>
                     <ul class="card-links">
-                        <li><a href="#"><i class="fas fa-link"></i>&nbsp Projeyi ziyaret et</a></li>
-                        <li><a href="#"><i class="fab fa-apple"></i>&nbsp App Store'da Gör</a></li>
-                        <li><a href="#"><i class="fab fa-android"></i>&nbsp Play Store'da Gör</a></li>
+                        @foreach($project->links as $link)
+                            <li><a href="{{$link->url}}"><i class="{{$link->icon}}"></i>&nbsp {{$link->name}}'de ziyaret et.</a></li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="card sm-padding">

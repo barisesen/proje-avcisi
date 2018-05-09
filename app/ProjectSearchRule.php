@@ -22,64 +22,69 @@ class ProjectSearchRule extends SearchRule
     {
         $query = $this->builder->query;
         return [
-            'should' => [
-                [
-                    'match' => [
-                        'title' => [
-                            'query' => $query,
-                            'boost' => 3
-                        ]
-                    ]
-                ],
-                [
-                    'match' => [
-                        'user_username' => [
-                            'query' => $query,
-                            'boost' => 2
-                        ]
-                    ]
-                ],
-                [
-                    'match' => [
-                        'tag_names' => [
-                            'query' => $query,
-                            'boost' => 1
-                        ]
-                    ]
-                ],
-                [
-                    'match' => [
-                        'tool_names' => [
-                            'query' => $query,
-                            'boost' => 1
-                        ]
-                    ]
-                ],
-                [
-                    'match' => [
-                        'category_name' => [
-                            'query' => $query,
-                            'boost' => 2
-                        ]
-                    ]
-                ],
-                [
-                    'match' => [
-                        'comment_contents' => [
-                            'query' => $query,
-                            'boost' => 1
-                        ]
-                    ]
-                ],
-                [
-                    'match' => [
-                        'content' => [
-                            'query' => $query,
-                            'boost' => 2
-                        ]
-                    ]
+            'must' => [
+                'match' => [
+                    '_all' => $query
                 ]
             ]
+//            'must' => [
+//                [
+//                    'match' => [
+//                        'title' => [
+//                            'query' => $query,
+//                            'boost' => 3
+//                        ]
+//                    ]
+//                ],
+//                [
+//                    'match' => [
+//                        'user_username' => [
+//                            'query' => $query,
+//                            'boost' => 2
+//                        ]
+//                    ]
+//                ],
+//                [
+//                    'match' => [
+//                        'tag_names' => [
+//                            'query' => $query,
+//                            'boost' => 1
+//                        ]
+//                    ]
+//                ],
+//                [
+//                    'match' => [
+//                        'tool_names' => [
+//                            'query' => $query,
+//                            'boost' => 1
+//                        ]
+//                    ]
+//                ],
+//                [
+//                    'match' => [
+//                        'category_name' => [
+//                            'query' => $query,
+//                            'boost' => 2
+//                        ]
+//                    ]
+//                ],
+//                [
+//                    'match' => [
+//                        'comment_contents' => [
+//                            'query' => $query,
+//                            'boost' => 1
+//                        ]
+//                    ]
+//                ],
+//                [
+//                    'match' => [
+//                        'content' => [
+//                            'query' => $query,
+//                            'boost' => 2
+//                        ]
+//                    ]
+//                ]
+//            ]
         ];
     }
 }

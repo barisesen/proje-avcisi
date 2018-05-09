@@ -14,16 +14,9 @@ class SearchController extends Controller
             if (!isset($projects[0])) {
                 $projects = Project::where('title', "{$request->q}%")->paginate(20);
             }
-
-            return response()->json([
-                'projects' => $projects,
-                'status' => 'Successful',
-                'q' => $request->q
-            ], 200);
+            $q = $request->q;
+            return view('search', compact('projects', 'q'));
         }
-        return response()->json([
-            'status' => 'Not Found',
-            'q' => $request->q
-        ], 404);
+        return back();
     }
 }
