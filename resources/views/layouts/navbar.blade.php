@@ -42,12 +42,12 @@
                         </a>
                     </li>
                     <li class="nav-user">
-                        <a href="{{ url('uye/gurkansen') }}" class="nav-link">
+                        <a href="/uye/{{auth()->user()->username}}" class="nav-link">
                             <i class="far fa-user fa-lg"></i>
                         </a>
                         <ul class="user-dropdown">
                             <div class="dropdown-arrow"><i class="fas fa-caret-up fa-2x"></i></div>
-                            <li><a href="{{ url('uye/gurkansen') }}"><i class="far fa-user"></i>&nbsp Profili Gör</a></li>
+                            <li><a href="/uye/{{auth()->user()->username}}"><i class="far fa-user"></i>&nbsp Profili Gör</a></li>
                             <li><a href="{{ url('uye/hesap') }}"><i class="fas fa-cog"></i>&nbsp Hesap Ayarları</a></li>
                             <li><a href="{{ url('uye/e-posta') }}"><i class="fas fa-at"></i>&nbsp E-posta Bildirimleri</a></li>
                             <li>

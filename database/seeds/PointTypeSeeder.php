@@ -22,6 +22,7 @@ class PointTypeSeeder extends Seeder
             ['name' => 'delete_comment_project', 'value' => -7],
             ['name' => 'delete_like_user', 'value' => -3],
             ['name' => 'delete_like_project', 'value' => -5],
+            ['name' => 'view_project', 'value' => 1],
         ];
         foreach ($types as $type) {
             DB::table('point_types')->insert([
