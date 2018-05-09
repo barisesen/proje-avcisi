@@ -1,0 +1,35 @@
+.social-links
+    li
+        a
+            display: block
+            color: #aaa
+            line-height: 32px
+            @include transition(.1s)
+            svg
+                width: 20px !important
+                display: inline-block
+        a:hover
+            color: #888
+
+.activity-links
+    li
+        color: #aaa
+        margin-bottom: 20px
+        a
+            color: #888
+            line-height: 24px
+            @include transition(.1s)
+            svg
+                width: 20px !important
+                display: inline-block
+        a:hover
+            color: #888
+
+        a.project-link
+            display: block
+            color: $main-link-color
+            background-color: rgba(0,0,0,0.02)
+            border-radius: $main-radius
+            padding: 5px 10px
+            color: #666
+            font-weight: bold

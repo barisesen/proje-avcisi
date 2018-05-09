@@ -20,6 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "chart.js": "^2.7.2",
         "gulp": "^3.9.1"
     }
 }

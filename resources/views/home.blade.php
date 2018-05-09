@@ -37,8 +37,10 @@
                                             <form class="" action="" method="POST">
                                                 <button type="button" class="button card-button" name="button"><i class="far fa-comment"></i>&nbsp Yorumla (2)</button>
                                             </form>
-                                            <form class="" action="" method="POST">
-                                                <button type="button" class="button card-button" name="button"><i class="fas fa-fire"></i>&nbsp Ateşle (8)</button>
+                                            <form class="project-like-form" action="" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="project_id" value="{{ 1 }}">
+                                                <button type="submit" class="button card-button like-button" name="button"><i class="fas fa-fire"></i>&nbsp Ateşle (8)</button>
                                             </form>
                                         </div>
                                     </div>

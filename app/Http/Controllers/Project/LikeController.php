@@ -16,9 +16,15 @@ class LikeController extends Controller
          * did you like it before
          */
         if (Like::where('user_id', auth()->user()->id)->where('project_id', $id)->exists()) {
-            return response()->json([
-                'message' => 'Already liked!'
-            ], 400);
+            // return response()->json([
+            //     'message' => 'Already liked!'
+            // ], 400);
+            $like = Like::where('project_id', $id)->where('user_id', auth()->user()->id)->delete();
+            if ($like) {
+                return response()->json([
+                    'message' => 'Successfully deleted'
+                ], 200);
+            }
         }
         $like = new Like();
         $like->user_id = auth()->user()->id;
@@ -26,11 +32,11 @@ class LikeController extends Controller
 
         if ($like->save()) {
             return response()->json([
-                'message' => 'Successful'
+                'message' => 'Successfully liked'
             ], 200);
         }
         return response()->json([
-            'message' => 'something went wrong!'
+            'message' => 'Something went wrong!'
         ], 500);
     }
 

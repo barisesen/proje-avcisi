@@ -97,7 +97,7 @@
                 <div class="card">
                     <h3 class="card-title">Kullanılan Araçlar</h3>
                     <ul class="tool-chips">
-                        <li><a href="#">#php</a></li>
+                        <li><a href="{{ url('arac/php') }}">#php</a></li>
                         <li><a href="#">#laravel</a></li>
                         <li><a href="#">#sass</a></li>
                         <li><a href="#">#redis</a></li>

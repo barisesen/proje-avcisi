@@ -42,3 +42,6 @@ function doneTyping($input) {
         });
     }
 }
+
+import './like.js';
+import './chart.js';

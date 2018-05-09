@@ -21,6 +21,8 @@ Route::get('/uye/{username}', 'UserController@show')->name('user');
 Route::get('/proje/{id}/{slug}', 'Project\ProjectController@show')->name('project');
 Route::get('/proje/{id}/{slug}/atesleyenler', 'Project\ProjectController@liked_users')->name('liked_users');
 
+Route::get('/arac/{slug}', 'ToolController@show')->name('tool');
+
 /*
  * Projects routing
  */
