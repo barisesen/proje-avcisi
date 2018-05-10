@@ -10,6 +10,7 @@ use App\Models\Tag;
 use App\Models\Tool;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class DevController extends Controller
@@ -17,6 +18,7 @@ class DevController extends Controller
     public function index()
     {
 
+        dd(Cache::store('redis')->get('categories'));
         dd(Project::search('sosyal ağ')->get());
             dd(ProjectTool::populars());
         $tools = Project::leftJoin('project_tools', 'project_tools.project_id', '=', 'projects.id')

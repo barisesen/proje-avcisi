@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Project;
+use App\Models\Admin;
+use App\User;
 use App\Http\Controllers\Controller;
 
 class ChartsController extends Controller
 {
     public function user() {
-        return view('admin.charts.user');
+        $userCount = User::all()->count();
+        $adminCount = Admin::all()->count();
+        return view('admin.charts.user', compact('userCount', 'adminCount'));
     }
     public function project() {
-        return view('admin.charts.project');
-    }
-    public function tool() {
-        return view('admin.charts.tool');
-
+        $users = User::all();
+        $projects = [];
+        foreach ($users as $user) {
+            $projects = array_push($projects,$user->projects);
+        }
+        return view('admin.charts.project', compact('user', 'projects'));
     }
 }

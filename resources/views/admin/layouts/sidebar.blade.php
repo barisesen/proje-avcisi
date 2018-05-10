@@ -19,7 +19,6 @@
         <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
             <li><a href="/admin/charts/user">User</a></li>
             <li><a href="/admin/charts/project">Proje</a></li>
-            <li><a href="/admin/charts/tool">Araçlar</a></li>
         </ul>
     </li>
 </nav>

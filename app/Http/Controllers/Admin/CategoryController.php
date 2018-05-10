@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 class CategoryController extends Controller
 {
@@ -16,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.categories.index',compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -37,7 +38,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        dd(1);
+        $category = new Category();
+        $category->name = $request->name;
+        $category->slug = str_slug($request->name);
+        $category->color = $request->color;
+        $category->save();
+
+        $categories = Category::all();
+        Cache::store('redis')->put('categories', $categories);
+
+        return back();
     }
 
     /**

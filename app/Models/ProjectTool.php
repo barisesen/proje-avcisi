@@ -12,7 +12,7 @@ class ProjectTool extends Model
         return $query
             ->select('*', DB::raw('count(id) as count'))
             ->groupBy('project_tools.tool_id')
-            ->having('count', '>', 1)
+            ->having('count', '>', 0)
             ->orderBy('count', 'desc');
     }
 

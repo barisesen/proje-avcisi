@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\UserCategory;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
@@ -50,7 +51,13 @@ class CategoryController extends Controller
         $category = Category::where('slug', $slug)->first();
         $projects = Project::where('category_id', $category->id)->paginate(20);
 
-        return view('category.show', compact('category', 'projects'));
+        $isLiked = false;
+        if (auth()->check()) {
+            $isLiked = UserCategory::where('user_id', auth()->user()->id)->where('category_id', $category->id)->exists();
+        }
+
+
+        return view('category.show', compact('category', 'projects', 'isLiked'));
     }
 
     /**

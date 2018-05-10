@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/follow/store/', 'Follow\FollowController@store')->name('store_follow');
     Route::post('/follow/destroy', 'Follow\FollowController@destroy');
 
+    Route::get('/kategori/{slug}/follow', 'UserCategoryController@store');
+
 });
 
 // Kategori Single Sayfası

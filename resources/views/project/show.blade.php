@@ -86,7 +86,7 @@
                 </div>
                 <div class="card sm-padding">
                     <p><i class="fas fa-eye"></i>&nbsp {{$viewCount}} Görüntülenme</p>
-                    <p><i class="fas fa-user-circle"></i>&nbsp <a href="#">Gürkan Şen</a> paylaştı.</p>
+                    <p><i class="fas fa-user-circle"></i>&nbsp <a href="/uye/{{$project->user->username}}">{{$project->user->first_name}} {{$project->user->last_name}}</a> paylaştı.</p>
                 </div>
                 <div class="card">
                     <h3 class="card-title">Şunlarla ilgili</h3>

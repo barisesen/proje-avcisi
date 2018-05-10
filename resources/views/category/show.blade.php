@@ -5,6 +5,9 @@
     <div class="headline" style="background-color: {{ $category->color }}">
         <div class="container without-padding">
             <h1>{{ $category->name }}</h1>
+            @if(auth()->check() && isset($isLiked) && !$isLiked)
+                <p><a href="/kategori/{{$category->slug}}/follow" class="button blue-bg side-btn" name="button"><i class="fas fa-fire"></i>&nbsp Takip Et</a></p>
+            @endif
         </div>
     </div>
     <div class="container">
